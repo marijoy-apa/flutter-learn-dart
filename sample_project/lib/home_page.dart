@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project/product_box.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -11,10 +12,7 @@ class MyHomePage extends StatelessWidget {
       ),
       drawer: const Drawer(),
       body: const Center(
-        child: Icon(
-          Icons.restaurant_menu_rounded,
-          size: 70,
-        ),
+        child: ProductBox(),
       ),
     );
   }
