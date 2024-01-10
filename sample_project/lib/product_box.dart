@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 class ProductBox extends StatelessWidget {
   // positional arguments
-  // const ProductBox({
-  //   super.key,
-  //   required this.name,
-  //   required this.description,
-  //   required this.price,
-  //   required this.image,
-  // });
-
-  // //named arguments
-  const ProductBox(
-    this.name,
-    this.description,
-    this.price,
-    this.image, {
+  const ProductBox({
     super.key,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
   });
+
+  // named arguments
+  // const ProductBox(
+  //   this.name,
+  //   this.description,
+  //   this.price,
+  //   this.image, {
+  //   super.key,
+  // });
 
   final String name;
   final String description;
