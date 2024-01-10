@@ -13,20 +13,20 @@ class MyHomePage extends StatelessWidget {
       drawer: const Drawer(),
       body: const Center(
         //positional arguments
-        child: ProductBox(
-          'name',
-          'description',
-          12321,
-          "assets/appImages/iphone.png",
-        ),
+        // child: ProductBox(
+        //   'name',
+        //   'description',
+        //   12321,
+        //   "assets/appImages/iphone.png",
+        // ),
 
         //named arguments
-        // child: ProductBox(
-        //   name: 'name',
-        //   description: 'description',
-        //   price: 212,
-        //   image: "assets/appImages/iphone.png",
-        // ),
+        child: ProductBox(
+          name: 'name',
+          description: 'description',
+          price: 212,
+          image: "assets/appImages/iphone.png",
+        ),
       ),
     );
   }
