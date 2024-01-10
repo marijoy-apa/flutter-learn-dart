@@ -1,7 +1,28 @@
 import 'package:flutter/material.dart';
 
 class ProductBox extends StatelessWidget {
-  const ProductBox({super.key});
+  // positional arguments
+  // const ProductBox({
+  //   super.key,
+  //   required this.name,
+  //   required this.description,
+  //   required this.price,
+  //   required this.image,
+  // });
+
+  // //named arguments
+  const ProductBox(
+    this.name,
+    this.description,
+    this.price,
+    this.image, {
+    super.key,
+  });
+
+  final String name;
+  final String description;
+  final int price;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +33,16 @@ class ProductBox extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset("assets/appImages/iphone.png"),
+            Image.asset(image),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(5),
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text('name'),
-                    Text('description'),
-                    Text('price'),
+                    Text(name),
+                    Text(description),
+                    Text(price.toString()),
                   ],
                 ),
               ),
