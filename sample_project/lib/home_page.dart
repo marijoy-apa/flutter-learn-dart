@@ -11,22 +11,45 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Product List'),
       ),
       drawer: const Drawer(),
-      body: const Center(
-        //positional arguments
-        // child: ProductBox(
-        //   'name',
-        //   'description',
-        //   12321,
-        //   "assets/appImages/iphone.png",
-        // ),
-
-        //named arguments
-        child: ProductBox(
-          name: 'name',
-          description: 'description',
-          price: 212,
-          image: "assets/appImages/iphone.png",
-        ),
+      body: ListView(
+        children: const [
+          ProductBox(
+            name: 'iPhone',
+            description: 'iPhone is the stylist phone ever',
+            price: 1000,
+            image: "assets/appImages/iphone.png",
+          ),
+          ProductBox(
+            name: 'Pixel',
+            description: 'Pixel is the most featureful phone ever',
+            price: 800,
+            image: "assets/appImages/pixel.png",
+          ),
+          ProductBox(
+            name: 'Laptop',
+            description: 'Laptop is most productive development tool',
+            price: 2000,
+            image: "assets/appImages/laptop.png",
+          ),
+          ProductBox(
+            name: 'Tablet',
+            description: 'Tablet is the most useful device ever for meeting',
+            price: 1500,
+            image: "assets/appImages/tablet.png",
+          ),
+          ProductBox(
+            name: 'Pendrive',
+            description: 'Pendrive is useful storage medium',
+            price: 100,
+            image: "assets/appImages/penDrive.png",
+          ),
+          ProductBox(
+            name: 'Floppy Drive',
+            description: 'Floppy drive is useful rescue storage medium',
+            price: 212,
+            image: "assets/appImages/floppyDisk.png",
+          ),
+        ],
       ),
     );
   }
