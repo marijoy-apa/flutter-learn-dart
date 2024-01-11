@@ -26,7 +26,6 @@ class _ProductBoxState extends State<ProductBox> {
     super.initState();
   }
 
-  // final String description;
   void onTapFavorites() {
     setState(() {
       isFave = !isFave;
