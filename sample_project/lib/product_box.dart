@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project/data/data.dart';
 import 'package:sample_project/model/product.dart';
 
 class ProductBox extends StatefulWidget {
@@ -27,6 +28,13 @@ class _ProductBoxState extends State<ProductBox> {
     setState(() {
       isFave = !isFave;
     });
+
+    for (int i = 0; i < productList.length; i++) {
+    if (productList[i].id == widget.product.name) {
+      productList[i].isFavorites =  !productList[i].isFavorites;
+      break; // Stop iterating once the product is found and updated
+    }
+  }
   }
 
   @override
