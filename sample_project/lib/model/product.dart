@@ -12,10 +12,10 @@ class Product {
     String? id,
   }) : id = id ?? uuid.v4();
 
-  final String name;
-  final String description;
-  final int price;
-  final String image;
-  final bool isFavorites;
-  final String id;
+   String name;
+   String description;
+   int price;
+   String image;
+   bool isFavorites;
+   String id;
 }
