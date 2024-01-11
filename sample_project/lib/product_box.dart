@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ProductBox extends StatelessWidget {
-  // positional arguments
   const ProductBox({
     super.key,
     required this.name,
@@ -9,15 +8,6 @@ class ProductBox extends StatelessWidget {
     required this.price,
     required this.image,
   });
-
-  // named arguments
-  // const ProductBox(
-  //   this.name,
-  //   this.description,
-  //   this.price,
-  //   this.image, {
-  //   super.key,
-  // });
 
   final String name;
   final String description;
