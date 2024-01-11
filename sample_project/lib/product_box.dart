@@ -1,33 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:sample_project/model/product.dart';
 
-class ProductBox extends StatefulWidget {
+class ProductBox extends StatelessWidget {
   const ProductBox({
     super.key,
-    required this.product,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
   });
 
-  final Product product;
-
-  @override
-  State<ProductBox> createState() => _ProductBoxState();
-}
-
-class _ProductBoxState extends State<ProductBox> {
-  var isFave;
-
-  @override
-  void initState() {
-    isFave = widget.product.isFavorites;
-    super.initState();
-  }
-
-  // final String description;
-  void onTapFavorites() {
-    setState(() {
-      isFave = !isFave;
-    });
-  }
+  final String name;
+  final String description;
+  final int price;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -38,27 +23,18 @@ class _ProductBoxState extends State<ProductBox> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset(
-              widget.product.image,
-            ),
+            Image.asset(image),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(5),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(widget.product.name),
-                    Text(widget.product.description),
-                    Text(widget.product.price.toString()),
+                    Text(name),
+                    Text(description),
+                    Text(price.toString()),
                   ],
                 ),
-              ),
-            ),
-            GestureDetector(
-              onTap: onTapFavorites,
-              child: Icon(
-                isFave ? Icons.favorite : Icons.favorite_border,
-                color: isFave ? Colors.red : Colors.black45,
               ),
             )
           ],

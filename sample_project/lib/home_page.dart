@@ -15,7 +15,10 @@ class MyHomePage extends StatelessWidget {
         body: ListView.builder(
           itemCount: productList.length,
           itemBuilder: (ctx, index) => ProductBox(
-            product: productList[index],
+            name: productList[index].name,
+            description: productList[index].description,
+            price: productList[index].price,
+            image: productList[index].image,
           ),
         ));
   }
