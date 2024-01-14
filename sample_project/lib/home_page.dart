@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_project/product_box.dart';
-import 'package:sample_project/provider/product_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_project/provider/product_list_provider.dart';
 
 class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key});

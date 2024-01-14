@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sample_project/data/data.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_project/model/product.dart';
 import 'package:sample_project/product_details_page.dart';
+import 'package:sample_project/provider/product_list_provider.dart';
 
-class ProductBox extends StatefulWidget {
+class ProductBox extends ConsumerStatefulWidget {
   const ProductBox({
     super.key,
     required this.product,
@@ -12,43 +13,21 @@ class ProductBox extends StatefulWidget {
   final Product product;
 
   @override
-  State<ProductBox> createState() => _ProductBoxState();
+  ConsumerState<ProductBox> createState() => _ProductBoxState();
 }
 
-class _ProductBoxState extends State<ProductBox> {
-  var isFave;
-  var product;
-
-  @override
-  void initState() {
-    product = widget.product;
-    isFave = widget.product.isFavorites;
-    super.initState();
-  }
-
+class _ProductBoxState extends ConsumerState<ProductBox> {
   void onTapFavorites() {
-    setState(() {
-      isFave = !isFave;
-    });
-
-    for (int i = 0; i < productList.length; i++) {
-      if (productList[i].id == widget.product.id) {
-        productList[i].isFavorites = !productList[i].isFavorites;
-        break; // Stop iterating once the product is found and updated
-      }
-    }
-    //need to update the product info to be passed when tapping a list, the widget.product can't be used as it is a final variable, therefore, values can't be updated
-    product = Product(
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      image: product.image,
-      isFavorites: !product.isFavorites,
-    );
+    ref.read(productListProvider.notifier).onAddFavorites(widget.product);
   }
 
   @override
   Widget build(BuildContext context) {
+    Product product = ref
+        .watch(productListProvider)
+        .where((list) => list.id == widget.product.id)
+        .toList()[0];
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -82,8 +61,8 @@ class _ProductBoxState extends State<ProductBox> {
               GestureDetector(
                 onTap: onTapFavorites,
                 child: Icon(
-                  isFave ? Icons.favorite : Icons.favorite_border,
-                  color: isFave ? Colors.red : Colors.black45,
+                  product.isFavorites ? Icons.favorite : Icons.favorite_border,
+                  color: product.isFavorites ? Colors.red : Colors.black45,
                 ),
               )
             ],
