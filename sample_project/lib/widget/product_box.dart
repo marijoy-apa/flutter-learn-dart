@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_project/model/product.dart';
-import 'package:sample_project/product_details_page.dart';
+import 'package:sample_project/screen/product_details_page.dart';
 import 'package:sample_project/provider/product_list_provider.dart';
 
-class ProductBox extends ConsumerStatefulWidget {
+class ProductBox extends ConsumerWidget {
   const ProductBox({
     super.key,
     required this.product,
@@ -13,25 +13,17 @@ class ProductBox extends ConsumerStatefulWidget {
   final Product product;
 
   @override
-  ConsumerState<ProductBox> createState() => _ProductBoxState();
-}
-
-class _ProductBoxState extends ConsumerState<ProductBox> {
-  void onTapFavorites() {
-    ref.read(productListProvider.notifier).onAddFavorites(widget.product);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Product product = ref
+  Widget build(BuildContext context, WidgetRef ref) {
+    Product productItem = product;
+    productItem = ref
         .watch(productListProvider)
-        .where((list) => list.id == widget.product.id)
+        .where((list) => list.id == product.id)
         .toList()[0];
 
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ProductDetails(product: product),
+          builder: (context) => ProductDetails(product: productItem),
         ));
       },
       child: Container(
@@ -42,7 +34,7 @@ class _ProductBoxState extends ConsumerState<ProductBox> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Image.asset(
-                widget.product.image,
+                product.image,
                 width: 100,
               ),
               Expanded(
@@ -51,15 +43,19 @@ class _ProductBoxState extends ConsumerState<ProductBox> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(widget.product.name),
-                      Text(widget.product.description),
-                      Text('\$${widget.product.price.toString()}'),
+                      Text(product.name),
+                      Text(product.description),
+                      Text('\$${product.price.toString()}'),
                     ],
                   ),
                 ),
               ),
               GestureDetector(
-                onTap: onTapFavorites,
+                onTap: () {
+                  ref
+                      .read(productListProvider.notifier)
+                      .onAddFavorites(product);
+                },
                 child: Icon(
                   product.isFavorites ? Icons.favorite : Icons.favorite_border,
                   color: product.isFavorites ? Colors.red : Colors.black45,
