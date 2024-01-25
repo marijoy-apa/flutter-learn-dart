@@ -26,9 +26,20 @@ class ProductDetails extends ConsumerWidget {
                   .read(productListProvider.notifier)
                   .onAddFavorites(productItem);
             },
-            icon: Icon(productItem.isFavorites
-                ? Icons.favorite
-                : Icons.favorite_outline),
+            icon: AnimatedSwitcher(
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                    turns: Tween(begin: 0.0, end: 1.0).animate(animation),
+                    child: child);
+              },
+              duration: const Duration(milliseconds: 300),
+              child: Icon(
+                productItem.isFavorites
+                    ? Icons.favorite
+                    : Icons.favorite_outline,
+                key: ValueKey(productItem.isFavorites),
+              ),
+            ),
           ),
         ],
       ),
