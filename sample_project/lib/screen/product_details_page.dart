@@ -51,10 +51,13 @@ class ProductDetails extends ConsumerWidget {
               color: Colors.grey,
               width: double.infinity,
               height: 300,
-              child: Image.asset(
-                product.image,
-                fit: BoxFit.fitHeight,
-                height: 150,
+              child: Hero(
+                tag: productItem.id,
+                child: Image.asset(
+                  product.image,
+                  fit: BoxFit.fitHeight,
+                  height: 150,
+                ),
               ),
             ),
             const SizedBox(height: 50),

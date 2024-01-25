@@ -33,9 +33,12 @@ class ProductBox extends ConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Image.asset(
-                product.image,
-                width: 100,
+              Hero(
+                tag: productItem.id,
+                child: Image.asset(
+                  product.image,
+                  width: 100,
+                ),
               ),
               Expanded(
                 child: Container(
