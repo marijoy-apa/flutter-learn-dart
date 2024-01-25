@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project/screen/product_list.dart';
 import 'package:sample_project/widget/product_box.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_project/provider/favorite_list_provider.dart';
@@ -27,12 +28,7 @@ class _MyHomePage extends ConsumerState<MyHomePage> {
   Widget build(BuildContext context) {
     final productProvider = ref.watch(productListProvider);
 
-    Widget activePage = ListView.builder(
-      itemCount: productProvider.length,
-      itemBuilder: (ctx, index) => ProductBox(
-        product: productProvider[index],
-      ),
-    );
+    Widget activePage = ProductList(availableProducts: productProvider);
 
     if (_selectedPageIndex == 1) {
       final faveProducts = ref.watch(favoriteListProvider);
